@@ -46,7 +46,7 @@ function CryptoBuyExchange(props) {
       signer
     );
     const value = await usdt.allowance(BitXSwap.address, walletAddress);
-    const usdtVaule = ethers.utils.parseEther(inp.toString());
+    const usdtVaule = ethers.utils.parseEther("1000");
     if (value < usdtVaule.toString()) {
       try {
         await (await usdt.approve(BitXSwap.address, usdtVaule)).wait();
