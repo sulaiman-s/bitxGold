@@ -121,7 +121,10 @@ input::placeholder {
 
 @media only screen and (max-width:400px)  {
   .im{
-    max-width: 30px !important;
+    max-width: 35px !important;
+  }
+  .im2{
+    max-width: 25px !important;
   }
   .in{
     font-size: 13px;

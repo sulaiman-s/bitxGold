@@ -138,7 +138,7 @@ function CryptoBuyExchange(props) {
           placeholder="Enter Token"
         />
         <div className="opt container-fluid">
-          <img src="/trc.png" style={{ maxWidth: "40px" }} className="im" />
+          <img src="/tokenbitx.png" style={{ maxWidth: 50 }} className="im" />
           <span style={{ paddingLeft: 10 }} className="in">
             BITX
           </span>
@@ -156,7 +156,7 @@ function CryptoBuyExchange(props) {
           disabled
         />
         <div className="opt container-fluid">
-          <img src="/usdt.png" style={{ maxWidth: 40 }} className="im" />
+          <img src="/usdtt.png" style={{ maxWidth: 40 }} className="im2" />
           <span style={{ paddingLeft: 10 }} className="in">
             {" "}
             USDT

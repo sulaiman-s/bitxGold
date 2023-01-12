@@ -1,6 +1,5 @@
 import React from "react";
 import CryptoBuyExchange from "./CryptoBuyExchange";
-import Header from "./header";
 
 function Home(props) {
   return (
@@ -8,7 +7,7 @@ function Home(props) {
       <div className="homecont row  ">
         <div className="col content">
           <div className="logo">
-            <img src="/lt.png" alt="logo" style={{ height: 115, width: 150 }} />
+            <img src="/bitxlog.png" alt="logo" style={{ width: 200 }} />
           </div>
           <div style={{ minWidth: "100%", marginTop: 30 }}>
             <span style={{ width: "100%", fontSize: "10vmin" }}>
