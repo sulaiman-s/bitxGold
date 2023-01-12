@@ -24,13 +24,16 @@ function CryptoBuyExchange(props) {
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const chainId = provider.getAddress();
+      const { chainId } = await provider.getNetwork();
 
-      if (chainId !== 97) {
+      if (chainId === 97) {
         setSigner(signer);
         setWalletAddress(address[0]);
       } else {
-        alert("Switch Network to BSC TESTNET");
+        toast.error("Switch Network to BSC TESTNET", {
+          position: "top-center",
+          style: { minWidth: 180 },
+        });
       }
     }
   };
