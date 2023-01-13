@@ -26,11 +26,11 @@ function CryptoBuyExchange(props) {
       const signer = provider.getSigner();
       const { chainId } = await provider.getNetwork();
 
-      if (chainId === 97) {
+      if (chainId === 56) {
         setSigner(signer);
         setWalletAddress(address[0]);
       } else {
-        toast.error("Switch Network to BSC TESTNET", {
+        toast.error("Switch Network to Binance Smart Chain", {
           position: "top-center",
           style: { minWidth: 180 },
         });
