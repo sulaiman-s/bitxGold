@@ -46,10 +46,10 @@ function CryptoBuyExchange(props) {
       signer
     );
     const value = await usdt.allowance(BitXSwap.address, walletAddress);
-    const usdtVaule = ethers.utils.parseEther("1000");
-    if (value < usdtVaule.toString()) {
+    const usdtValue = ethers.utils.parseEther("1000");
+    if (value < usdtValue.toString()) {
       try {
-        await (await usdt.approve(BitXSwap.address, usdtVaule)).wait();
+        await (await usdt.approve(BitXSwap.address, usdtValue)).wait();
       } catch (error) {
         toast.error("Transaction Failed", {
           position: "top-center",
@@ -59,7 +59,8 @@ function CryptoBuyExchange(props) {
     }
 
     try {
-      const swap = await (await usdtBitXSwap.swap(usdtVaule)).wait();
+      const usdtVal = ethers.utils.parseEther(inp.toString());
+      const swap = await (await usdtBitXSwap.swap(usdtVal)).wait();
       console.log(swap.events);
       if (!swap.events) {
         toast.error("Transaction Failed", {
