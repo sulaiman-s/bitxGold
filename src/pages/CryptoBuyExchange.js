@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import currency from "./crun";
 import axios from "axios";
 import { Button, Spinner } from "react-bootstrap";
-import BitXSwap1 from "../contractABI/BitXSwap1.json";
 import BitXSwap from "../contractABI/BitXSwap.json";
 import USDT from "../contractABI/USDT.json";
 import { ethers } from "ethers";
@@ -42,20 +41,16 @@ function CryptoBuyExchange(props) {
   const buyBitX = async () => {
     const usdt = new ethers.Contract(USDT.address, USDT.abi, signer);
     const usdtBitXSwap = new ethers.Contract(
-      BitXSwap1.address,
-      BitXSwap1.abi,
+      BitXSwap.address,
+      BitXSwap.abi,
       signer
     );
-    const value = await usdt.allowance(walletAddress, BitXSwap1.address);
+    const value = await usdt.allowance(walletAddress, BitXSwap.address);
+    console.log(value.toString());
     const usdtValue = ethers.utils.parseEther("1000");
     if (value < inp.toString()) {
       try {
-        await (
-          await usdt.approve(
-            "0x51f753a7E2fF6D9AeC3A1F278d0a7f8f8e76DFE9",
-            usdtValue
-          )
-        ).wait();
+        await (await usdt.approve(BitXSwap.address, usdtValue)).wait();
       } catch (error) {
         toast.error("Transaction Failed", {
           position: "top-center",
@@ -78,7 +73,7 @@ function CryptoBuyExchange(props) {
             swap.blockHash,
           { position: "top-center", style: { minWidth: 180 } }
         );
-        const tokenAddress = "0xE8b3300605421837f52bD591d144FD625f17e02C";
+        const tokenAddress = "0x24622dDd29979113Bf678cdDEF507404B3C7bBB1";
         const tokenSymbol = "BXG";
         const tokenDecimals = 18;
         try {
