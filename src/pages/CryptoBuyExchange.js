@@ -69,8 +69,7 @@ function CryptoBuyExchange(props) {
         });
       } else {
         toast.success(
-          "Transaction Successfull https://testnet.bscscan.com/tx/" +
-            swap.blockHash,
+          "Transaction Successfull https://bscscan.com/tx/" + swap.blockHash,
           { position: "top-center", style: { minWidth: 180 } }
         );
         const tokenAddress = "0x24622dDd29979113Bf678cdDEF507404B3C7bBB1";
