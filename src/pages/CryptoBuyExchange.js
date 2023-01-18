@@ -74,7 +74,7 @@ function CryptoBuyExchange(props) {
           { position: "top-center", style: { minWidth: 180 } }
         );
         const tokenAddress = "0xE8b3300605421837f52bD591d144FD625f17e02C";
-        const tokenSymbol = "BITXGOLD";
+        const tokenSymbol = "BXG";
         const tokenDecimals = 18;
         try {
           const wasAdded = await window.ethereum.request({
