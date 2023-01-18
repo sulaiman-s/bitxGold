@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import currency from "./crun";
 import axios from "axios";
 import { Button, Spinner } from "react-bootstrap";
+import BitXSwap1 from "../contractABI/BitXSwap1.json";
 import BitXSwap from "../contractABI/BitXSwap.json";
 import USDT from "../contractABI/USDT.json";
 import { ethers } from "ethers";
@@ -19,14 +20,14 @@ function CryptoBuyExchange(props) {
     if (!window.ethereum) {
       setMetamaskError("PLEASE INSTALL METAMASK");
     } else {
-      const address = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const { chainId } = await provider.getNetwork();
 
       if (chainId === 56) {
+        const address = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
         setSigner(signer);
         setWalletAddress(address[0]);
       } else {
@@ -41,15 +42,20 @@ function CryptoBuyExchange(props) {
   const buyBitX = async () => {
     const usdt = new ethers.Contract(USDT.address, USDT.abi, signer);
     const usdtBitXSwap = new ethers.Contract(
-      BitXSwap.address,
-      BitXSwap.abi,
+      BitXSwap1.address,
+      BitXSwap1.abi,
       signer
     );
-    const value = await usdt.allowance(BitXSwap.address, walletAddress);
+    const value = await usdt.allowance(walletAddress, BitXSwap1.address);
     const usdtValue = ethers.utils.parseEther("1000");
-    if (value < usdtValue.toString()) {
+    if (value < inp.toString()) {
       try {
-        await (await usdt.approve(BitXSwap.address, usdtValue)).wait();
+        await (
+          await usdt.approve(
+            "0x51f753a7E2fF6D9AeC3A1F278d0a7f8f8e76DFE9",
+            usdtValue
+          )
+        ).wait();
       } catch (error) {
         toast.error("Transaction Failed", {
           position: "top-center",
@@ -61,7 +67,6 @@ function CryptoBuyExchange(props) {
     try {
       const usdtVal = ethers.utils.parseEther(inp.toString());
       const swap = await (await usdtBitXSwap.swap(usdtVal)).wait();
-      console.log(swap.events);
       if (!swap.events) {
         toast.error("Transaction Failed", {
           position: "top-center",
@@ -99,7 +104,7 @@ function CryptoBuyExchange(props) {
         }
       }
     } catch (error) {
-      toast.error(error.reason, {
+      toast.error("Failed Transaction", {
         position: "top-center",
         style: { minWidth: 180 },
       });
