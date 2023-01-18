@@ -153,7 +153,7 @@ function CryptoBuyExchange(props) {
         <input
           type="number"
           className="inp"
-          value={parseFloat(inp) * parseFloat(gp)}
+          value={parseFloat(inp) * (parseFloat(gp) / 10)}
           disabled
         />
         <div className="opt container-fluid">
