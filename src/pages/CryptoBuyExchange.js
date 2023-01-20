@@ -108,7 +108,7 @@ function CryptoBuyExchange(props) {
   useEffect(() => {
     connectMetamask();
     var myHeaders = new Headers();
-    myHeaders.append("x-access-token", "goldapi-dvw7tlcrv8u05-io");
+    myHeaders.append("x-access-token", "goldapi-7ygrtld4flayn-io");
     myHeaders.append("Content-Type", "application/json");
 
     var requestOptions = {
